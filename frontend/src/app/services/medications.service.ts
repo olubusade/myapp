@@ -9,9 +9,11 @@ import { Observable } from 'rxjs';
 export class MedicationsService {
 
   constructor(private http: HttpClient) { }
+  //API URL coming from backend
+  url:string = "http://localhost:3000/api/all-medications";
 
-  url:string = "http://localhost:3000/Medications";
-  getMedications(){
+  //GET Request to the backend server and return data
+  getMedications():Observable<Medications[]>{
    return this.http.get<Medications[]>(this.url)
   }
 }

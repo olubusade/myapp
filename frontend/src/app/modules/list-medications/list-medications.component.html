@@ -1,102 +1,58 @@
 <div class="container jumbotron">
-    <h2 class="display2">List of Medications</h2>
-    <br>
-    <div class="form-group row">
-        <div class="col-lg-6 p-2 bd-highlight">
-            <label>Select No of Page: </label>&nbsp;&nbsp;
-          <select class="form-control mx-4" (change)="tableData($event)" class="custom-select">
-            <option *ngFor="let size of tableSizesArr" [ngValue]="size">
-              {{ size }}
-            </option>
-          </select>
-        </div>
-        <div class="col-lg-6 col-md-6 push-right">
-            <button type="button" class="btn btn-primary" (click)="showMe()" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class ="fa fa-plus-circle"></i> Add Medication</button>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-4">
-            <input type="text" [(ngModel)] = "searchCategory" (ngModelChange)="searchByCategory()" class="form-control"  placeholder="Search By Category...">
-        </div>
-        <div class= "col-4">
-            <input type="text" [(ngModel)] = "searchName" (ngModelChange)="searchByName()" class="form-control"  placeholder="Search By Name...">
-        </div>
-       
-    </div>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col" (click)="sort('category')">Category &nbsp;<i class="fa fa-sort"></i></th>
-            <th scope="col" (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i></th>
-            <th scope="col" (click)="sort('dose')">Dose &nbsp;<i class="fa fa-sort"></i></th>
-            <th scope="col" (click)="sort('description')">Decription &nbsp;<i class="fa fa-sort"></i></th>
-            <th scope="col" (click)="sort('cost')">Cost (CAD $) &nbsp;<i class="fa fa-sort"></i></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor = "let medication of medications | 
-            orderBy: key: reverse | 
-            paginate : {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count
-            };
-            let i = index">
-            <td>{{medication.category}}</td>
-            <td>{{medication.name}}</td>
-            <td>{{medication.dose}}</td>
-            <td>{{medication.description}}</td>
-            <td>{{medication.cost}}</td> 
-                 
-          </tr>
-            <tr>
-                <td colspan="5" *ngIf ="medications.length <= 0">
-                    <h6>Oops! No Medication Record Found!</h6>
-                </td> 
-            </tr>
-          
-        </tbody>
-        
-        <div class="d-flex justify-content-center">
-            <pagination-controls  previousLabel="Prev" nextLabel="Next" (pageChange)="tabSize($event)">
-            </pagination-controls>
-        </div>
-    <!--
-        <nav aria-label="Page navigation" class="text-right">
-            <ngb-pagination [collectionSize]="params.count" [(page)]="params.currentPage" (pageChange)="pageChanged($event)" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" 
-              aria-label="Default pagination"></ngb-pagination>
-        </nav>
-    -->
-    </table>
-    
-</div>
-<!--
-<div *ngIf="showAddMedication" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
-        </div>
+  <h2 class="display2">List of Medications</h2>
+  <br>
+  <div class="form-group row">
+      <div class="col-lg-6 p-2 bd-highlight">
+          <label>Select Records Per Page: </label>&nbsp;&nbsp;
+        <select class="form-control mx-4" (change)="tableData($event)" class="custom-select">
+          <option *ngFor="let size of tableSizesArr" [ngValue]="size">
+            {{ size }}
+          </option>
+        </select>
       </div>
-    </div>
+  </div>
+  <div class="row mt-4">
+      <div class="col-4">
+          <input type="text" [(ngModel)] = "searchCategory" (ngModelChange)="searchByCategory()" class="form-control"  placeholder="Search By Category...">
+      </div>
+      <div class= "col-4">
+          <input type="text" [(ngModel)] = "searchName" (ngModelChange)="searchByName()" class="form-control"  placeholder="Search By Name...">
+      </div>
+  </div>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" (click)="sort('category')">Category &nbsp;<i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('name')">Name &nbsp;<i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('dose')">Dose &nbsp;<i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('description')">Decription &nbsp;<i class="fa fa-sort"></i></th>
+          <th scope="col" (click)="sort('cost')">Cost (CAD $) &nbsp;<i class="fa fa-sort"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let medication of medications | 
+          orderBy: key: reverse | 
+          paginate : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+          };
+          let i = index">
+          <td>{{medication.category}}</td>
+          <td>{{medication.name}}</td>
+          <td>{{medication.dose}}</td>
+          <td>{{medication.description}}</td>
+          <td>{{medication.cost}}</td>     
+        </tr>
+          <tr>
+              <td colspan="5" *ngIf ="medications.length <= 0">
+                  <h6>Oops! No Medication Record Found!</h6>
+              </td> 
+          </tr>
+      </tbody>
+      <div class="d-flex justify-content-center">
+        <pagination-controls  previousLabel="Prev" nextLabel="Next" (pageChange)="tabSize($event)">
+        </pagination-controls>
+      </div>
+  </table>
 </div>
--->
