@@ -19,7 +19,7 @@ Backend runs on http://localhost:3000
 FEATURES
 Using Angular, Bootstrap, Express.js, Node.js ffg features were included during the development effort of the CyberPatient take home app:
 Frontend
-- pages: Home, List of Medications
+- pages: Home, List of Medications, 404 Not Foud Page
 - searching / filtering of medications based on category or name
 - pagination
 - lazy loading of the entire application starting from home page to List of medications page
