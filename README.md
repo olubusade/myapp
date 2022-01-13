@@ -1,4 +1,4 @@
-This is a patient web app to fetch medication and filter respecitvely from frontend
+This is a cyber patient web app to fetch medication and filter respecitvely from frontend
 cd frontend
 
 npm install
